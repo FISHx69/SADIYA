@@ -1,8 +1,14 @@
 [
-	{
-		"version": "1.6.01",
-		"files": {
-			"bot/handler/handlerEvents.js": "fixes mention issue"
-		}
-	}
+  {
+    "version": "1.6.01",
+    "files": {
+      "bot/longin/login.js": "added new updated fca"
+    }
+  },
+  {
+    "version": "1.6.02",
+    "files": {
+      "bot/handler/handlerEvents.js": "fixes mention issue"
+    }
+  }
 ]
