@@ -2,7 +2,7 @@
 	{
 		"version": "1.6.00",
 		"files": {
-			"bot/login/": "fixes mention issue"
+			"bot/handlerEvents.js": "fixes mention issue"
 		}
 	}
 ]
