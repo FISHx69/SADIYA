@@ -2,7 +2,7 @@
 	{
 		"version": "1.6.01",
 		"files": {
-			"bot/longin/login.js": "added new updated fca"
+			"bot/handler/handlerEvents.js": "fixes mention issue"
 		}
 	}
 ]
