@@ -1,8 +1,8 @@
 [
 	{
-		"version": "16.0.0",
+		"version": "1.6.00",
 		"files": {
-			"bot/login/login.js": "fixes terminal freeze"
+			"bot/login/": "fixes mention issue"
 		}
 	}
 ]
