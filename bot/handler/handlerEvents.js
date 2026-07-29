@@ -151,6 +151,34 @@ module.exports = function (api, threadModel, userModel, dashBoardModel, globalMo
 
 		const senderID = event.userID || event.senderID || event.author;
 
+		// —————————————— MENTION LOGIC —————————————— //
+		const currentMentions = event.mentions || {};
+		event.mentions = {};
+
+		if (event.messageReply && event.messageReply.senderID) {
+			event.mentions[event.messageReply.senderID] = "";
+		} else if (body && body.includes("@")) {
+			try {
+				const info = await api.getThreadInfo(threadID);
+				const bodyLower = body.toLowerCase();
+				const nicknames = info.nicknames || {};
+				const participants = info.userInfo || [];
+
+				participants.forEach(user => {
+					const uid = user.id;
+					const realName = (user.name || "").toLowerCase();
+					const nickName = (nicknames[uid] || "").toLowerCase();
+					if ((nickName && bodyLower.includes("@" + nickName)) ||
+						(realName && bodyLower.includes("@" + realName))) {
+						event.mentions[uid] = user.name;
+					}
+				});
+			} catch (e) { event.mentions = currentMentions; }
+		} else {
+			event.mentions = currentMentions;
+		}
+		// —————————————————————————————————————————————————— //
+
 		let threadData = global.db.allThreadData.find(t => t.threadID == threadID);
 		let userData = global.db.allUserData.find(u => u.userID == senderID);
 
