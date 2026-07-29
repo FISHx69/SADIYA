@@ -3,13 +3,9 @@
     "version": "1.6.01",
     "files": {
       "package.json": "added new updated fca",
-      "bot/login/login.js": "added fca path"
-    }
-  },
-  {
-    "version": "1.6.02",
-    "files": {
+      "bot/login/login.js": "added fca path",
       "bot/handler/handlerEvents.js": "fixes mention issue"
+      
     }
   }
 ]
