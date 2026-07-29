@@ -1,6 +1,6 @@
 [
   {
-    "version": "1.6.01",
+    "version": "1.6.1",
     "files": {
       "package.json": "added new updated fca",
       "bot/login/login.js": "added fca path",
