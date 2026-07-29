@@ -1,6 +1,6 @@
 {
-  "name": "hinata-bot-v3",
-  "version": "1.6.00",
+  "name": "hinata-bot",
+  "version": "1.6.01",
   "description": "A simple Bot chat messenger using personal account.",
   "main": "index.js",
   "engines": {
