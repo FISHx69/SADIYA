@@ -1,4 +1,4 @@
-## 📦 Version 1.6.01
+## 📦 Version 1.6.1
 ### ⬆️ What's Changed
 - **package.json**: fix: added new updated fca
 - **bot/login/login.js**: fix: fca path
