@@ -1,8 +1,8 @@
 [
 	{
-		"version": "1.6.00",
+		"version": "1.6.01",
 		"files": {
-			"bot/handlerEvents.js": "fixes mention issue"
+			"bot/handler/handlerEvents.js": "fixes mention issue"
 		}
 	}
 ]
