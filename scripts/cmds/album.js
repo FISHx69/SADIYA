@@ -1,6 +1,6 @@
 const axios = require("axios"), fs = require("fs"), path = require("path");
 
-const mahmud = async () => {
+const baseApiUrl = async () => {
         const base = await axios.get("https://raw.githubusercontent.com/mahmudx7/HINATA/main/baseApiUrl.json");
         return base.data.mahmud;
 };
@@ -8,7 +8,7 @@ const mahmud = async () => {
 module.exports = {
         config: {
                 name: "album",
-                version: "1.7",
+                version: "2.7",
                 author: "MahMUD",
                 countDown: 10,
                 role: 0,
@@ -27,7 +27,7 @@ module.exports = {
 
         langs: {
                 bn: {
-                        noInput: "× বেবি, একটি ক্যাটাগরি দাও অথবা ভিডিওতে রিপ্লাই দাও",
+                        noInput: "• বেবি, একটি ক্যাটাগরি দাও অথবা ভিডিওতে রিপ্লাই দাও! 😘",
                         error: "× সমস্যা হয়েছে: %1। প্রয়োজনে Contact MahMUD।\n•WhatsApp: 01836298139",
                         invalidPage: "× ভুল পৃষ্ঠা! সর্বোচ্চ পৃষ্ঠা: %1",
                         invalidSelect: "❌ ভুল সিলেকশন।",
@@ -35,7 +35,7 @@ module.exports = {
                         footer: "\n♻ | পৃষ্ঠা [%1/%2]<😘\nℹ | টাইপ করুন !%3 %4 - পরবর্তী পৃষ্ঠা দেখতে।"
                 },
                 en: {
-                        noInput: "× Baby, please specify a category or reply to a video",
+                        noInput: "• Baby, please specify a category or reply to a video! 😘",
                         error: "× API error: %1. Contact MahMUD for help.\n•WhatsApp: 01836298139",
                         invalidPage: "× Invalid page! Max page: %1",
                         invalidSelect: "❌ Invalid selection.",
@@ -43,7 +43,7 @@ module.exports = {
                         footer: "\n♻ | 𝐏𝐚𝐠𝐞 [%1/%2]<😘\nℹ | 𝐓𝐲𝐩𝐞 !%3 %4 - 𝐭𝐨 𝐬𝐞𝐞 𝐧𝐞𝐱𝐭 𝐩𝐚𝐠𝐞."
                 },
                 vi: {
-                        noInput: "× Cưng ơi, vui lòng chỉ định danh mục hoặc phản hồi video",
+                        noInput: "• Cưng ơi, vui lòng chỉ định danh mục hoặc phản hồi video! 😘",
                         error: "× Lỗi: %1. Liên hệ MahMUD để hỗ trợ.",
                         invalidPage: "× Trang không hợp lệ! Trang tối đa: %1",
                         invalidSelect: "❌ Lựa chọn không hợp lệ.",
@@ -57,26 +57,24 @@ module.exports = {
                 if (this.config.author !== authorName) return api.sendMessage("You are not authorized to change the author name.", event.threadID, event.messageID);
 
                 try {
-                        const apiBase = await mahmud();
-
                         if (args[0] === "add") {
                                 if (!args[1] || event.type !== "message_reply" || !event.messageReply.attachments.length) return message.reply(getLang("noInput"));
                                 api.setMessageReaction("⏳", event.messageID, () => {}, true);
-                                const imgurRes = await axios.get(`${apiBase.replace(/\/$/, "")}/imgur?url=${encodeURIComponent(event.messageReply.attachments[0].url)}`);
-                                const res = await axios.post(`${apiBase}/album/mahmud/add`, { category: args[1].toLowerCase(), videoUrl: imgurRes.data.link });
+                                const imgurRes = await axios.get(`${(await baseApiUrl()).replace(/\/$/, "")}/imgur?url=${encodeURIComponent(event.messageReply.attachments[0].url)}`);
+                                const res = await axios.post(`${await baseApiUrl()}/album/mahmud/add`, { category: args[1].toLowerCase(), videoUrl: imgurRes.data.link });
                                 api.setMessageReaction("🪽", event.messageID, () => {}, true);
                                 return message.reply(res.data.message);
                         }
 
                         if (args[0] === "list") {
                                 api.setMessageReaction("⏳", event.messageID, () => {}, true);
-                                const res = await axios.get(`${apiBase}/api/album2/mahmud/list`);
+                                const res = await axios.get(`${await baseApiUrl()}/api/album2/mahmud/list`);
                                 api.setMessageReaction("🪽", event.messageID, () => {}, true);
                                 return message.reply(res.data.message);
                         }
 
                         api.setMessageReaction("⏳", event.messageID, () => {}, true);
-                        const configRes = await axios.get(`${apiBase}/api/album2/mahmud/display`);
+                        const configRes = await axios.get(`${await baseApiUrl()}/api/album2/mahmud/display`);
                         const { displayNames, realCategories, captions } = configRes.data;
                         const page = parseInt(args[0]) || 1, itemsPerPage = 10, totalPages = Math.ceil(displayNames.length / itemsPerPage);
 
@@ -107,8 +105,7 @@ module.exports = {
 
                 try {
                         api.setMessageReaction("⏳", event.messageID, () => {}, true);
-                        const apiBase = await mahmud();
-                        const response = await axios.get(`${apiBase}/api/album2/mahmud/videos/${category}?userID=${event.senderID}`);
+                        const response = await axios.get(`${await baseApiUrl()}/api/album2/mahmud/videos/${category}?userID=${event.senderID}`);
                         
                         if (!response.data.success) return message.reply(response.data.message);
 
