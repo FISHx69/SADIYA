@@ -10,7 +10,7 @@ module.exports = {
                 name: "album",
                 version: "1.7",
                 author: "MahMUD",
-                countDown: 5,
+                countDown: 10,
                 role: 0,
                 category: "media",
                 description: {
@@ -30,6 +30,7 @@ module.exports = {
                         noInput: "× বেবি, একটি ক্যাটাগরি দাও অথবা ভিডিওতে রিপ্লাই দাও",
                         error: "× সমস্যা হয়েছে: %1। প্রয়োজনে Contact MahMUD।\n•WhatsApp: 01836298139",
                         invalidPage: "× ভুল পৃষ্ঠা! সর্বোচ্চ পৃষ্ঠা: %1",
+                        invalidSelect: "❌ ভুল সিলেকশন।",
                         header: "𝐀𝐯𝐚𝐢𝐥𝐚𝐛𝐥𝐞 𝐀𝐥𝐛𝐮𝐦 𝐕𝐢𝐝𝐞𝐨",
                         footer: "\n♻ | পৃষ্ঠা [%1/%2]<😘\nℹ | টাইপ করুন !%3 %4 - পরবর্তী পৃষ্ঠা দেখতে।"
                 },
@@ -37,6 +38,7 @@ module.exports = {
                         noInput: "× Baby, please specify a category or reply to a video",
                         error: "× API error: %1. Contact MahMUD for help.\n•WhatsApp: 01836298139",
                         invalidPage: "× Invalid page! Max page: %1",
+                        invalidSelect: "❌ Invalid selection.",
                         header: "𝐀𝐯𝐚𝐢𝐥𝐚𝐛𝐥𝐞 𝐀𝐥𝐛𝐮𝐦 𝐕𝐢𝐝𝐞𝐨",
                         footer: "\n♻ | 𝐏𝐚𝐠𝐞 [%1/%2]<😘\nℹ | 𝐓𝐲𝐩𝐞 !%3 %4 - 𝐭𝐨 𝐬𝐞𝐞 𝐧𝐞𝐱𝐭 𝐩𝐚𝐠𝐞."
                 },
@@ -44,6 +46,7 @@ module.exports = {
                         noInput: "× Cưng ơi, vui lòng chỉ định danh mục hoặc phản hồi video",
                         error: "× Lỗi: %1. Liên hệ MahMUD để hỗ trợ.",
                         invalidPage: "× Trang không hợp lệ! Trang tối đa: %1",
+                        invalidSelect: "❌ Lựa chọn không hợp lệ.",
                         header: "𝐀𝐯𝐚𝐢𝐥𝐚𝐛𝐥𝐞 𝐀𝐥𝐛𝐮𝐦 𝐕𝐢𝐝𝐞𝐨",
                         footer: "\n♻ | Trang [%1/%2]<😘\nℹ | Nhập !%3 %4 - để xem trang tiếp theo."
                 }
@@ -60,7 +63,7 @@ module.exports = {
                                 if (!args[1] || event.type !== "message_reply" || !event.messageReply.attachments.length) return message.reply(getLang("noInput"));
                                 api.setMessageReaction("⏳", event.messageID, () => {}, true);
                                 const imgurRes = await axios.get(`${apiBase.replace(/\/$/, "")}/imgur?url=${encodeURIComponent(event.messageReply.attachments[0].url)}`);
-                                const res = await axios.post(`${apiBase}/api/album2/mahmud/add`, { category: args[1].toLowerCase(), videoUrl: imgurRes.data.link });
+                                const res = await axios.post(`${apiBase}/album/mahmud/add`, { category: args[1].toLowerCase(), videoUrl: imgurRes.data.link });
                                 api.setMessageReaction("🪽", event.messageID, () => {}, true);
                                 return message.reply(res.data.message);
                         }
@@ -91,7 +94,8 @@ module.exports = {
                         });
                 } catch (err) {
                         api.setMessageReaction("❌", event.messageID, () => {}, true);
-                        return message.reply(getLang("error", err.response?.data?.error || err.message));
+                        const errorMsg = err.response?.data?.error || err.message || "Unknown error";
+                        return message.reply(getLang("error", errorMsg));
                 }
         },
 
@@ -99,12 +103,15 @@ module.exports = {
                 if (event.senderID !== Reply.author) return;
                 api.unsendMessage(Reply.messageID);
                 const category = Reply.realCategories[parseInt(event.body) - 1];
-                if (!category) return;
+                if (!category) return message.reply(getLang("invalidSelect"));
 
                 try {
                         api.setMessageReaction("⏳", event.messageID, () => {}, true);
                         const apiBase = await mahmud();
                         const response = await axios.get(`${apiBase}/api/album2/mahmud/videos/${category}?userID=${event.senderID}`);
+                        
+                        if (!response.data.success) return message.reply(response.data.message);
+
                         const randomVideoUrl = response.data.videos[Math.floor(Math.random() * response.data.videos.length)];
                         const filePath = path.join(__dirname, `cache/album_${Date.now()}.mp4`);
 
@@ -119,7 +126,8 @@ module.exports = {
                         writer.on("error", (err) => message.reply(getLang("error", err.message)));
                 } catch (err) {
                         api.setMessageReaction("❌", event.messageID, () => {}, true);
-                        return message.reply(getLang("error", err.response?.data?.error || err.message));
+                        const errorMsg = err.response?.data?.error || err.message || "Unknown error";
+                        return message.reply(getLang("error", errorMsg));
                 }
         }
 };
