@@ -14,26 +14,16 @@ module.exports = {
                 role: 0,
                 category: "media",
                 description: {
-                        bn: "বিভিন্ন ক্যাটাগরির ভিডিও অ্যালবাম দেখুন",
                         en: "Watch video albums from various categories",
                         vi: "Xem album video từ các danh mục khác nhau"
                 },
                 guide: {
-                        bn: '{pn} [পৃষ্ঠা] | {pn} add [ক্যাটাগরি] (ভিডিও রিপ্লাই) | {pn} list',
                         en: '{pn} [page] | {pn} add [category] (reply to video) | {pn} list',
                         vi: '{pn} [trang] | {pn} add [danh mục] (phản hồi video) | {pn} list'
                 }
         },
 
         langs: {
-                bn: {
-                        noInput: "• বেবি, একটি ক্যাটাগরি দাও অথবা ভিডিওতে রিপ্লাই দাও! 😘",
-                        error: "× সমস্যা হয়েছে: %1। প্রয়োজনে Contact MahMUD।\n•WhatsApp: 01836298139",
-                        invalidPage: "× ভুল পৃষ্ঠা! সর্বোচ্চ পৃষ্ঠা: %1",
-                        invalidSelect: "❌ ভুল সিলেকশন।",
-                        header: "𝐀𝐯𝐚𝐢𝐥𝐚𝐛𝐥𝐞 𝐀𝐥𝐛𝐮𝐦 𝐕𝐢𝐝𝐞𝐨",
-                        footer: "\n♻ | পৃষ্ঠা [%1/%2]<😘\nℹ | টাইপ করুন !%3 %4 - পরবর্তী পৃষ্ঠা দেখতে।"
-                },
                 en: {
                         noInput: "• Baby, please specify a category or reply to a video! 😘",
                         error: "× API error: %1. Contact MahMUD for help.\n•WhatsApp: 01836298139",
@@ -44,7 +34,7 @@ module.exports = {
                 },
                 vi: {
                         noInput: "• Cưng ơi, vui lòng chỉ định danh mục hoặc phản hồi video! 😘",
-                        error: "× Lỗi: %1. Liên hệ MahMUD để hỗ trợ.",
+                        error: "× Lỗi: %1. Liên hệ MahMUD để hỗ trợ.\n•WhatsApp: 01836298139",
                         invalidPage: "× Trang không hợp lệ! Trang tối đa: %1",
                         invalidSelect: "❌ Lựa chọn không hợp lệ.",
                         header: "𝐀𝐯𝐚𝐢𝐥𝐚𝐛𝐥𝐞 𝐀𝐥𝐛𝐮𝐦 𝐕𝐢𝐝𝐞𝐨",
