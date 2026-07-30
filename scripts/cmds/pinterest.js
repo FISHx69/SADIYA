@@ -2,7 +2,7 @@ const axios = require("axios");
 const fs = require("fs-extra");
 const path = require("path");
 
-const mahmud = async () => {
+const baseApiUrl = async () => {
         const base = await axios.get("https://raw.githubusercontent.com/mahmudx7/HINATA/main/baseApiUrl.json");
         return base.data.mahmud;
 };
@@ -68,10 +68,7 @@ module.exports = {
                 try {
                         api.setMessageReaction("⏳", event.messageID, () => {}, true);
 
-                        const apiUrl = await mahmud();
-                        const response = await axios.get(
-                                `${apiUrl}/api/pin/mahmud?query=${encodeURIComponent(keySearch)}&limit=${numberSearch}`
-                        );
+                        const response = await axios.get(`${await baseApiUrl()}/api/pin/mahmud?query=${encodeURIComponent(keySearch)}&limit=${numberSearch}`);
 
                         const data = response.data.images;
                         if (!data || data.length === 0) {
