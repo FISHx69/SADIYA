@@ -2,7 +2,7 @@ const axios = require("axios");
 const fs = require("fs-extra");
 const path = require("path");
 
-const mahmud = async () => {
+const baseApiUrl = async () => {
         const base = await axios.get("https://raw.githubusercontent.com/mahmudx7/HINATA/main/baseApiUrl.json");
         return base.data.mahmud;
 };
@@ -36,19 +36,19 @@ module.exports = {
                         noInput: "× বেবি, একটি ছবিতে রিপ্লাই দিয়ে বলো কি এডিট করতে হবে! 🪄",
                         wait: "🔄 | তোমার ছবি এডিট করা হচ্ছে, একটু অপেক্ষা করো বেবি...",
                         success: "✅ | তোমার এডিট করা ছবি তৈরি: \"%1\"",
-                        error: "× এডিট করতে সমস্যা হয়েছে: %1। প্রয়োজনে Contact MahMUD।"
+                        error: "× এডিট করতে সমস্যা হয়েছে: %1। প্রয়োজনে Contact MahMUD।\n•WhatsApp: 01836298139"
                 },
                 en: {
                         noInput: "× Baby, please reply to a photo with your prompt to edit it! 🪄",
                         wait: "🔄 | Editing your image, please wait...",
                         success: "✅ Here's your Edited image\nPrompt: %1",
-                        error: "× Failed to edit: %1. Contact MahMUD for help."
+                        error: "× Failed to edit: %1. Contact MahMUD for help.\n•WhatsApp: 01836298139"
                 },
                 vi: {
                         noInput: "× Cưng ơi, vui lòng phản hồi ảnh kèm lời nhắc chỉnh sửa! 🪄",
                         wait: "🔄 | Đang chỉnh sửa ảnh, vui lòng chờ chút nhé...",
                         success: "✅ | Ảnh đã chỉnh sửa cho: \"%1\"",
-                        error: "× Lỗi chỉnh sửa: %1. Liên hệ MahMUD để hỗ trợ."
+                        error: "× Lỗi chỉnh sửa: %1. Liên hệ MahMUD để hỗ trợ.\n•WhatsApp: 01836298139"
                 }
         },
 
@@ -72,9 +72,8 @@ module.exports = {
                 const waitMsg = await message.reply(getLang("wait"));
 
                 try {
-                        const baseURL = await mahmud();
                         const res = await axios.post(
-                                `${baseURL}/api/edit`,
+                                `${await baseApiUrl()}/api/edit`,
                                 { prompt, imageUrl: repliedImage.url },
                                 { responseType: "arraybuffer" }
                         );
