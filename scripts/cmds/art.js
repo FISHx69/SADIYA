@@ -47,7 +47,7 @@ module.exports = {
                 },
                 vi: {
                         list_header: "✅ | 𝐃𝐚𝐧𝐡 𝐬á𝐜𝐡 𝐩𝐡𝐨𝐧𝐠 𝐜á𝐜𝐡 𝐧𝐠𝐡ệ 𝐭𝐡𝐮ậ𝐭:\n\n",
-                        no_image: "📸 Vui lòng phản hồi một ảnh.",
+                        no_image: "Vui lòng phản hồi một ảnh.",
                         invalid_style: "❌ Số kiểu phải từ 1 đến 100.",
                         generating: "🔄 | Applying art, please wait...\n• Style: %1\n• Style name: %2",
                         error: "❌ An error occurred: contact MahMUD %1\n•WhatsApp: 01836298139",
