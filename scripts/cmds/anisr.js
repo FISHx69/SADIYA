@@ -3,14 +3,14 @@ const fs = require("fs-extra");
 const path = require("path");
 
 const baseApiUrl = async () => {
-  const base = await axios.get("https://raw.githubusercontent.com/mahmudx7/HINATA/main/baseApiUrl.json");
-  return base.data.mahmud;
+        const base = await axios.get("https://raw.githubusercontent.com/mahmudx7/HINATA/main/baseApiUrl.json");
+        return base.data.mahmud;
 };
 
 module.exports = {
         config: {
-                name: "anisr",
-                aliases: ["animesr", "anisearch"],
+                name: "anisearch",
+                aliases: ["animesr", "anisr"],
                 version: "1.7",
                 author: "MahMUD",
                 countDown: 10,
