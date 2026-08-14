@@ -1,9 +1,9 @@
-<img src="https://i.imgur.com/Mmo26FF.jpeg" alt="banner">
-<h1 align="center"><img src="https://i.imgur.com/ZfuZrPc.jpeg" width="22px"> Hinata Bot - Bot Chat Messenger</h1>
+<img src="https://i.ibb.co/RQ28H2p/banner.png" alt="banner">
+<h1 align="center"><img src="./dashboard/images/logo-non-bg.png" width="22px"> Hinata Bot - Bot Chat Messenger</h1>
 
 <p align="center">
-	<a href="https://nodejs.org/dist/v26.7.0">
-		<img src="https://img.shields.io/badge/Nodejs%20Support-16.x-brightgreen.svg?style=flat-square" alt="Nodejs Support v26.x">
+	<a href="https://nodejs.org/dist/v16.20.0">
+		<img src="https://img.shields.io/badge/Nodejs%20Support-16.x-brightgreen.svg?style=flat-square" alt="Nodejs Support v16.x">
 	</a>
   <img alt="size" src="https://img.shields.io/github/repo-size/mahmudx7/Hinata-bot-v3.svg?style=flat-square&label=size">
   <img alt="code-version" src="https://img.shields.io/badge/dynamic/json?color=brightgreen&label=code%20version&prefix=v&query=%24.version&url=https://github.com/mahmudx7/Hinata-bot-v3/raw/main/package.json&style=flat-square">
@@ -34,7 +34,7 @@
 - ***I am not responsible for any problems that may arise from using this bot.***
 
 ## 🚧 **Requirement**
-- Node.js 26.x [Download](https://nodejs.org/dist/v26.7.0) | [Home](https://nodejs.org/en/download/) | [Other versions](https://nodejs.org/en/download/releases/)
+- Node.js 16.x [Download](https://nodejs.org/dist/v16.20.0) | [Home](https://nodejs.org/en/download/) | [Other versions](https://nodejs.org/en/download/releases/)
 - Knowledge of **programming**, javascript, nodejs, unofficial facebook api
 
 ## 📝 **Tutorial**
