@@ -34,7 +34,7 @@
 - ***I am not responsible for any problems that may arise from using this bot.***
 
 ## 🚧 **Requirement**
-- Node.js 16.x [Download](https://nodejs.org/dist/v16.20.0) | [Home](https://nodejs.org/en/download/) | [Other versions](https://nodejs.org/en/download/releases/)
+- Node.js 26.x [Download](https://nodejs.org/dist/v26.7.0) | [Home](https://nodejs.org/en/download/) | [Other versions](https://nodejs.org/en/download/releases/)
 - Knowledge of **programming**, javascript, nodejs, unofficial facebook api
 
 ## 📝 **Tutorial**
