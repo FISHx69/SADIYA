@@ -1,5 +1,5 @@
-<img src="https://i.ibb.co/RQ28H2p/banner.png" alt="banner">
-<h1 align="center"><img src="./dashboard/images/logo-non-bg.png" width="22px"> Hinata Bot - Bot Chat Messenger</h1>
+<img src="https://i.imgur.com/Mmo26FF.jpeg" alt="banner">
+<h1 align="center"><img src="https://i.imgur.com/ZfuZrPc.jpeg" width="22px"> Hinata Bot - Bot Chat Messenger</h1>
 
 <p align="center">
 	<a href="https://nodejs.org/dist/v26.7.0">
