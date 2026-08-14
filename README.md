@@ -134,6 +134,7 @@ If you have major coding issues with this bot, please join and ask for help.
 - Currently, the bot supports 2 languages:
 - [x] `en: English`
 - [x] `vi: Vietnamese`
+- [x] `bn: bangla`
 
 - Change language in `config.json` file
 - You can customize the language in the folder `languages/`, `languages/cmds/` and `languages/events/`
