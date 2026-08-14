@@ -2,8 +2,8 @@
 <h1 align="center"><img src="./dashboard/images/logo-non-bg.png" width="22px"> Hinata Bot - Bot Chat Messenger</h1>
 
 <p align="center">
-	<a href="https://nodejs.org/dist/v16.20.0">
-		<img src="https://img.shields.io/badge/Nodejs%20Support-16.x-brightgreen.svg?style=flat-square" alt="Nodejs Support v16.x">
+	<a href="https://nodejs.org/dist/v26.7.0">
+		<img src="https://img.shields.io/badge/Nodejs%20Support-26.x-brightgreen.svg?style=flat-square" alt="Nodejs Support v26.x">
 	</a>
   <img alt="size" src="https://img.shields.io/github/repo-size/mahmudx7/Hinata-bot-v3.svg?style=flat-square&label=size">
   <img alt="code-version" src="https://img.shields.io/badge/dynamic/json?color=brightgreen&label=code%20version&prefix=v&query=%24.version&url=https://github.com/mahmudx7/Hinata-bot-v3/raw/main/package.json&style=flat-square">
@@ -34,7 +34,7 @@
 - ***I am not responsible for any problems that may arise from using this bot.***
 
 ## 🚧 **Requirement**
-- Node.js 16.x [Download](https://nodejs.org/dist/v16.20.0) | [Home](https://nodejs.org/en/download/) | [Other versions](https://nodejs.org/en/download/releases/)
+- Node.js 26.x [Download](https://nodejs.org/dist/v26.7.0) | [Home](https://nodejs.org/en/download/) | [Other versions](https://nodejs.org/en/download/releases/)
 - Knowledge of **programming**, javascript, nodejs, unofficial facebook api
 
 ## 📝 **Tutorial**
@@ -303,3 +303,25 @@ If you have major coding issues with this bot, please join and ask for help.
 - Don't claim my source code as your own
 - Do not monetize my source code (such as: buy and sell commands, buy and sell bots, call for donations, etc.)
 - Don't remove/edit my credits (author name) in my source code
+
+---
+
+<div align="center">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&pause=1000&color=25D366&center=true&vCenter=true&width=600&lines=Thanks+for+using+Hinata+Bot+%F0%9F%A4%96;Star+this+repo+if+you+like+it+%E2%AD%90;Made+with+%E2%9D%A4%EF%B8%8F+by+MahMUD" alt="Typing SVG" />
+</div>
+
+## 👤 Author Contact
+
+| Name | MahMUD |
+| :--- | :--- |
+| **GitHub** | [@mahmudx7](https://github.com/mahmudx7) |
+| **Facebook** | [mahmudexe](https://www.facebook.com/mahmudexe) |
+| **Instagram** | [@mahmud.x07](https://instagram.com/mahmud.x07) |
+| **YouTube** | [@mahmudx7](https://www.youtube.com/@mahmudx7) |
+| **WhatsApp** | [+880 1836-298139](https://wa.me/8801836298139) |
+| **Email** | [mahmudx077@gmail.com](mailto:mahmudx077@gmail.com) |
+| **Portfolio** | [mahmud-exe.onrender.com](https://mahmud-exe.onrender.com/) |
+
+<div align="center">
+  <sub>⭐ If you like <b>Hinata Bot</b>, don't forget to star the repo — it helps the project stay visible!</sub>
+</div>
