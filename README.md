@@ -13,7 +13,7 @@
 </p>
 
 <p align="center">
-  <a href="https://nodejs.org/dist/v20.20.0">
+  <a href="https://nodejs.org/dist/v26.7.0">
     <img src="https://img.shields.io/badge/Nodejs%20Support-20.x-brightgreen.svg?style=flat-square" alt="Nodejs Support v20">
   </a>
   <img alt="Repo Size" src="https://img.shields.io/github/repo-size/mahmudx7/Hinata-Bot-V3.svg?style=flat-square&label=Size">
