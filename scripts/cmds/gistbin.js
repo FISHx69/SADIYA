@@ -10,42 +10,36 @@ const baseApiUrl = async () => {
 module.exports = {
         config: {
                 name: "gistbin",
-                aliases: ["gbin"],
-                version: "1.7",
+                aliases: ["gbin", "gist"],
+                version: "2.7",
                 author: "MahMUD",
                 countDown: 10,
                 role: 2,
                 description: {
-                        bn: "আপনার কমান্ড ফাইলটি Gist এ আপলোড করুন",
-                        en: "Upload your command file to Gist",
-                        vi: "Tải tệp lệnh của bạn lên Gist"
+                        en: "Upload command file or custom text to Gist",
+                        vi: "Tải tệp lệnh hoặc văn bản tùy chỉnh lên Gist"
                 },
                 category: "owner",
                 guide: {
-                        bn: '   {pn} <ফাইলের নাম>: কমান্ডের নাম লিখুন',
-                        en: '   {pn} <fileName>: Type the command name',
-                        vi: '   {pn} <tên tệp>: Nhập tên tệp lệnh'
+                        en: '   • File upload: {pn} <fileName>\n   • Custom text: {pn} create <title> | <text/code>\n   • Message reply: Reply to a message with {pn} <title>',
+                        vi: '   • Tải lên tệp: {pn} <tên tệp>\n   • Văn bản tùy chỉnh: {pn} create <tiêu đề> | <văn bản/mã>\n   • Trả lời tin nhắn: Trả lời tin nhắn bằng {pn} <tiêu đề>'
                 }
         },
 
         langs: {
-                bn: {
-                        noInput: "× বেবি, ফাইলের নাম তো বলো!",
-                        notFound: "× ফাইলটি খুঁজে পাওয়া যায়নি!",
-                        success: "✅ Gist তৈরি হয়েছে\n\n📄 র লিঙ্ক: %2",
-                        error: "× সমস্যা হয়েছে: %1। প্রয়োজনে Contact MahMUD|\n•WhatsApp: 01836298139"
-                },
                 en: {
-                        noInput: "× Baby, please enter a file name!",
-                        notFound: "× File not found!",
-                        success: "✅ Gist Created\n\n📄 Raw: %2",
-                        error: "× API error: %1. Contact MahMUD for help.\n•WhatsApp: 01836298139"
+                        noInput: "× Baby, please enter a file name or use 'create <title> | <text>'!",
+                        notFound: "× File not found: %1.js",
+                        formatError: "× Invalid format for custom Gist! Use:\n{pn} create <title> | <text/code>",
+                        success: "✅ Gist Created Successfully!\n\n• Title: %1\n• Raw Link: %2",
+                        error: "× API error: %1. Contact MahMUD for help.\n• WhatsApp: 01836298139"
                 },
                 vi: {
-                        noInput: "× Cưng ơi, hãy nhập tên tệp!",
-                        notFound: "× Không tìm thấy tệp!",
-                        success: "✅ Đã tạo Gist\n\n📄 Thô: %2",
-                        error: "× Lỗi: %1. Liên hệ MahMUD để hỗ trợ.\n•WhatsApp: 01836298139"
+                        noInput: "× Cưng ơi, hãy nhập tên tệp hoặc dùng 'create <tiêu đề> | <văn bản>'!",
+                        notFound: "× Không tìm thấy tệp: %1.js",
+                        formatError: "× Định dạng không hợp lệ! Sử dụng:\n{pn} create <tiêu đề> | <văn bản/mã>",
+                        success: "✅ Đã tạo Gist thành công!\n\n• Tiêu đề: %1\n• Liên kết thô: %2",
+                        error: "× Lỗi: %1. Liên hệ MahMUD để hỗ trợ.\n• WhatsApp: 01836298139"
                 }
         },
 
@@ -55,38 +49,56 @@ module.exports = {
                         return api.sendMessage("You are not authorized to change the author name.", event.threadID, event.messageID);
                 }
 
-                const fileName = args[0];
-                if (!fileName) return message.reply(getLang("noInput"));
+                let uploadTitle = "";
+                let uploadText = "";
 
-                const filePathWithoutExtension = path.join(__dirname, "..", "cmds", fileName);
-                const filePathWithExtension = path.join(__dirname, "..", "cmds", fileName + ".js");
+                if (args[0] && args[0].toLowerCase() === "create") {
+                        const content = args.slice(1).join(" ");
+                        if (!content.includes("|")) {
+                                return message.reply(getLang("formatError"));
+                        }
+                        const parts = content.split("|");
+                        uploadTitle = parts[0].trim();
+                        uploadText = parts.slice(1).join("|").trim();
+                } 
+                else if (event.type === "message_reply" && event.messageReply.body) {
+                        uploadTitle = args.join(" ") || "MahMUD Gist";
+                        uploadText = event.messageReply.body;
+                } 
+                else {
+                        const fileName = args[0];
+                        if (!fileName) return message.reply(getLang("noInput"));
 
-                if (!fs.existsSync(filePathWithoutExtension) && !fs.existsSync(filePathWithExtension)) {
-                        return api.sendMessage(getLang("notFound"), event.threadID, event.messageID);
+                        const filePathWithoutExtension = path.join(__dirname, "..", "cmds", fileName);
+                        const filePathWithExtension = path.join(__dirname, "..", "cmds", fileName.endsWith(".js") ? fileName : fileName + ".js");
+
+                        const filePath = fs.existsSync(filePathWithoutExtension) ? filePathWithoutExtension : (fs.existsSync(filePathWithExtension) ? filePathWithExtension : null);
+
+                        if (!filePath) {
+                                return api.sendMessage(getLang("notFound", fileName), event.threadID, event.messageID);
+                        }
+
+                        uploadTitle = fileName;
+                        uploadText = fs.readFileSync(filePath, "utf8");
                 }
-
-                const filePath = fs.existsSync(filePathWithoutExtension) ? filePathWithoutExtension : filePathWithExtension;
 
                 try {
                         api.setMessageReaction("⏳", event.messageID, () => {}, true);
                         
-                        const fileData = fs.readFileSync(filePath, "utf8");
-                        const baseUrl = await baseApiUrl();                   
-                        
-                        const res = await axios.post(`${baseUrl}/api/gist`, {
-                                name: fileName,
-                                text: fileData
+                        const response = await axios.post(`${await baseApiUrl()}/api/gist`, {
+                                name: uploadTitle,
+                                text: uploadText
                         });
 
-                        if (res.data && res.data.success) {
+                        if (response.data && response.data.success) {
                                 api.setMessageReaction("✅", event.messageID, () => {}, true);
                                 return api.sendMessage(
-                                        getLang("success", res.data.url, res.data.raw),
+                                        getLang("success", uploadTitle, response.data.raw),
                                         event.threadID,
                                         event.messageID
                                 );
                         } else {
-                                throw new Error(res.data.message || "Failed to create gist");
+                                throw new Error(response.data.message || "Failed to create gist");
                         }
 
                 } catch (err) {
