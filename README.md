@@ -35,6 +35,7 @@
 
 - [Features](#-features)
 - [Language Support](#-language-support)
+- [Free Commands](#-free-commands)
 - [Tutorial & Setup](#-tutorial--deployment)
 - [Requirements](#-requirements)
 - [Portfolio](#-developer-portfolio)
@@ -66,6 +67,22 @@ Switch the bot's response language anytime in `config.json`.
 | 🇧🇩 **Bangla** | `bn` | ✅ Supported |
 | 🇺🇸 **English** | `en` | ✅ Supported |
 | 🇻🇳 **Vietnamese** | `vi` | ✅ Supported |
+
+---
+
+## 🆓 Free Commands
+
+Hinata Bot V3 ships with a huge collection of **free commands** — and the list keeps growing! New commands are added and existing ones get updated **day by day**, so there's always something fresh to try.
+
+<p align="center">
+  <a href="https://mahmud-exe.onrender.com/cmds" target="_blank">
+    <img src="https://img.shields.io/badge/📜%20Browse%20Free%20Commands-25D366?style=for-the-badge&logo=googlechat&logoColor=white" alt="Free Commands">
+  </a>
+</p>
+
+🔗 **Command List:** [https://mahmud-exe.onrender.com/cmds](https://mahmud-exe.onrender.com/cmds)
+
+> 💡 Bookmark the link above — commands are updated regularly, so check back often for the latest additions!
 
 ---
 
